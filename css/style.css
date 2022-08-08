@@ -18,10 +18,10 @@
     --clr-dark: #303030; 
     --clr-accent: #16e0bd;
 
-    --fs-h1: 4rem;
-    --fs-h2: 3.25rem;
-    --fs-h3: 2.25rem;
-    --fsbody: 2rem;
+    --fs-h1: 5rem;
+    --fs-h2: 4.25rem;
+    --fs-h3: 3.5rem;
+    --fsbody: 3.25rem;
 
     --bs: 0.25em 0.25em 0.75em rgba(0,0,0,0.25),
           0.125em 0.125em 0.25em rgba(0,0,0,0.15);
@@ -29,10 +29,10 @@
 
 @media (min-wdth: 800px) {
     :root {
-        --fs-h1: 5.5rem;
-        --fs-h2: 4.75rem;
-        --fs-h3: 2.5rem;
-        --fs-body:2.125rem;
+        --fs-h1: 6.5rem;
+        --fs-h2: 5.75rem;
+        --fs-h3: 3.75rem;
+        --fs-body:3.5rem;
     }
 }
 
@@ -76,7 +76,7 @@ strong {font-weight : var(--fw-bold);}
     color: var(--clr-dark);
     text-decoration: none;
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: var(--fw-bold);
@@ -253,6 +253,8 @@ header {
 
 /* Intro section */
 .intro {
+    max-width: 1500px;
+    margin: 0 auto;
     position: relative;
 }
 
@@ -273,13 +275,6 @@ header {
         grid-template-columns: min-content max-content;
     }
 
-    .intro__img {
-        grid-area: img;
-        min-width: 250px;
-        position: relative;
-        z-index: 2;
-    }
-
     .section__subtitle--intro {
         align-self: start;
         grid-column: -1 / 1;
@@ -288,6 +283,13 @@ header {
         position: relative;
         left: -1.5em;
         width: calc(100% + 1.5em);
+    }
+
+    .intro__img {
+        grid-area: img;
+        min-width: 250px;
+        position: relative;
+        z-index: 2;
     }
 }
 
@@ -344,7 +346,7 @@ header {
 
 /* about me */
 .about-me {
-    max-width: 1000px;
+    max-width: 1500px;
     margin: 0 auto;
 }
 

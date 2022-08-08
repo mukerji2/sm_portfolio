@@ -1,0 +1,29 @@
+/* Setting Global Properties */
+:root {
+    --ff-primary: 'Koulen', cursive;
+    --ff-secondary: 'VT323', monospace;
+  
+    --clr-light: #fff;
+    --clr-dark: #303030;
+    --clr-accent: #add8e6;
+  
+    --fsheader: 5rem;
+    --fsnav: 2.5rem;
+    --fstextmain: 2rem;
+    --fstextsub: 1rem;
+  }
+
+  
+  .App {
+    padding: 5px;
+    margin-top: 1%;
+    margin-left: 1%;
+    outline: 3px solid var(--clr-accent);
+    outline-offset: 3px;
+  }
+
+  .InnerApp {
+      padding: 5px;
+      outline: 3px solid var(--clr-dark);
+      outline-offset: 3px;
+  }

@@ -1,0 +1,118 @@
+
+/* Setting Global Properties */
+:root {
+  --ff-primary:'Koulen', cursive; 
+  --ff-secondary: 'VT323', monospace;
+
+  --clr-light: #fff;
+  --clr-dark: #000000;
+  --clr-accent: #add8e6;
+
+  --fsheader: 6.5rem;
+  --fsnav: 3.25rem;
+  --fs-posttext: 2rem;
+  --fs-posttitle: 2.25rem;
+  --fstextsub: 1rem;
+  --fs-postsubtitle: 1.75rem;
+}
+
+
+/* General Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--ff-primary);
+  background: var(--clr-dark);
+  color: var(--clr-light);
+}
+
+
+/* Content Container */
+.App {
+  padding: 0;
+}
+
+
+/* Header */ 
+.Header {
+
+  /*border-bottom: 1px solid #ddd;*/
+  background-color: var(--clr-dark);
+  
+}
+
+.Header .navbar-brand {
+  font-size: var(--fsheader);
+  color: var(--clr-light);
+}
+
+
+
+/* "posts" */
+.PostParent {
+  
+}
+
+.Post {
+  margin:1em;
+  background: var(--clr-dark);
+  color: var(--clr-light);
+  min-height: 200px;
+}
+
+
+.PostTitle {
+  font-family: var(--ff-primary);
+  font-size: var(--fs-posttitle);
+}
+
+.PostText {
+  font-family: var(--ff-secondary);
+  font-size: var(--fs-posttext);
+}
+
+.PostSubtitle {
+  font-family: var(--ff-primary);
+  font-size: var(--fs-postsubtitle);
+
+}
+.Post:hover {
+  outline: 3px solid var(--clr-accent);
+  outline-offset: 3px; 
+}
+
+
+
+/* Sidebar */
+.Sidebar {
+  /*max-width: 250px;*/
+  margin: 0 auto;
+  position: sticky; /* attaches sidebar to left side on scroll */
+  top: 62px; /* vertical pos wrt header */
+  align-self: flex-start; /* aligns sidebar w/ top border of stack component*/
+  align-items: left; /* aligns children components to the left*/
+}
+.Sidebar .nav-item {
+  margin: 0.1em;
+  width: 100%;
+  font-size: var(--fsnav);
+}
+
+.Sidebar .nav-item:hover {
+  outline: 3px solid var(--clr-accent);
+  outline-offset: 3px;
+}
+
+.Sidebar .active {
+  background-color: var(--clr-accent);
+}
+
+.Sidebar a {
+  color: var(--clr-light);
+}
+
+.Sidebar a:visited {
+  color: var(--clr-light);
+}
