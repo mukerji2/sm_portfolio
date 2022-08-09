@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
+//import { Flow } from 'three/examples/jsm/modifiers/CurveModifier.js';
 
 export default function Cube() {
     const mountRef = useRef(null);
@@ -16,10 +17,11 @@ export default function Cube() {
         /** near clipping pane */
         /** far clipping pane */
         let camera = new THREE.PerspectiveCamera(75, mountRef.current.clientWidth/mountRef.current.clientHeight, 0.1, 1000);
-        let renderer = new THREE.WebGLRenderer();
+        let renderer = new THREE.WebGLRenderer({ alpha:true });
         
         renderer.setSize( mountRef.current.clientWidth, mountRef.current.clientHeight);
-        
+        renderer.setClearColor(0x000000, 0);
+
         mountRef.current.appendChild(renderer.domElement);
         
         /** define shape geometry and material */
@@ -30,7 +32,9 @@ export default function Cube() {
         let cube = new THREE.Mesh( geoCube, matCube );
         
         /** By default, scene.add() adds to co-ord (0,0,0). move camera out (change z pos below) to avoid camera and cube being inside each other */
-        scene.add( cube );
+        
+        //scene.add( cube );
+        
         camera.position.z = 5;
 
         /** ambient light is omnipresent and applied to everything equally. It cannot cast shadows because it has no direction. It will just change how our colors appear. */
@@ -51,18 +55,66 @@ export default function Cube() {
         });
 
         let wire = new THREE.Mesh(geoWire, matWire);
-        scene.add(wire)
+        //scene.add(wire)
+
+        
+
+        
+        const cubeGroup = new THREE.Group();
+        cubeGroup.add( cube );
+        cubeGroup.add( wire );
+
+        scene.add(cubeGroup)
+        
 
 
+
+        /** flow stuff */
+        /*
+        const somePoints = [
+
+            new THREE.Vector3(  1,   0, 3 ),
+            new THREE.Vector3( -1, 0, -3),
+        ];
+        
+        const curve = new THREE.CatmullRomCurve3( somePoints );	
+        curve.closed = true;
+        
+        const points = curve.getPoints( 60 );
+
+        const line = new THREE.LineLoop( new THREE.BufferGeometry( ).setFromPoints( points ), new THREE.LineBasicMaterial( { color: 0xffffaa } ) );
+        scene.add( line );
+
+        const flow = new Flow(cubeGroup);
+        flow.updateCurve(0, curve);
+        scene.add(flow.object3D);
+        */
+
+
+        /** zoom in/zoom out toggle for camera animation */
+        let inc = true;
         
         /** function that renders / animates things inside scene */
         /** creates loop that renders every screen refresh (usually 60 times per second) */
         let animate = function () {
+            
+            /** zoom in/zoom out toggle for camera animation */
+            if (cubeGroup.position.z <= -4 || cubeGroup.position.z >= 2) {
+                inc = !inc;
+            }
+            
             cube.rotation.x += 0.02;
             cube.rotation.y += 0.02;
             wire.rotation.x -= 0.01;
             wire.rotation.y -= 0.01;
             
+            if (inc) {
+                cubeGroup.position.z += 0.015;
+            } else {
+                cubeGroup.position.z -= 0.015;
+            }
+
+            //flow.moveAlongCurve(0.0006);
             renderer.render( scene, camera );
 
             requestAnimationFrame( animate );
