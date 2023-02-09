@@ -6,7 +6,7 @@
 
   --clr-light: #fff;
   --clr-dark: #000000;
-  --clr-accent: #add8e6;
+  --clr-accent: #ff0051;
 
   --fsheader: 6.5rem;
   --fsnav: 3.25rem;
@@ -14,6 +14,7 @@
   --fs-posttitle: 2.25rem;
   --fstextsub: 1rem;
   --fs-postsubtitle: 1.75rem;
+  --fs-enter: 2.75rem;
 }
 
 
@@ -40,7 +41,7 @@ body {
 
   /*border-bottom: 1px solid #ddd;*/
   background-color: var(--clr-dark);
-  
+  /*outline: 3px solid var(--clr-accent);*/
 }
 
 .Header .navbar-brand {
@@ -79,7 +80,7 @@ body {
 
 }
 .Post:hover {
-  outline: 3px solid var(--clr-accent);
+  /*outline: 3px solid var(--clr-accent);*/
   outline-offset: 3px; 
 }
 
@@ -101,7 +102,7 @@ body {
 }
 
 .Sidebar .nav-item:hover {
-  outline: 3px solid var(--clr-accent);
+  /*outline: 3px solid var(--clr-accent);*/
   outline-offset: 3px;
 }
 
@@ -115,4 +116,16 @@ body {
 
 .Sidebar a:visited {
   color: var(--clr-light);
+}
+
+.EnterBtn {
+  /*outline: 3px solid var(--clr-accent);*/
+  font-family: var(--ff-secondary);
+  font-size: var(--fs-enter);
+  display: flex;
+  justify-content: center;
+}
+
+.Three {
+  /*outline: 3px solid var(--clr-light);*/
 }
