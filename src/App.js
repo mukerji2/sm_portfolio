@@ -1,5 +1,5 @@
 import Container from 'react-bootstrap/Container';
-import {BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Body from './components/Body';
 import Posts from './components/Posts';
@@ -13,8 +13,7 @@ import HomePage from './pages/HomePage';
 export default function App() {
   return ( 
     <Container fluid className="App">
-      <Header />
-      <BrowserRouter>
+    
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
@@ -23,7 +22,7 @@ export default function App() {
           <Route path="/info" element={<InfoPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
-      </BrowserRouter>
+  
     </Container>
   );
 }

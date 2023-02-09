@@ -10,7 +10,7 @@ export default function Cube() {
     useLayoutEffect(() => {
 
         let scene = new THREE.Scene();
-
+        let stop = false;
         /** Params */
         /** field of view(FOV is the extent of the scene that is seen on the display at any given moment. The value is in degrees.) */
         /** aspect ratio (use element width/height otherwise squished) */
@@ -30,6 +30,8 @@ export default function Cube() {
             color: 0xff0051, 
         });
         let cube = new THREE.Mesh( geoCube, matCube );
+
+        
         
         /** By default, scene.add() adds to co-ord (0,0,0). move camera out (change z pos below) to avoid camera and cube being inside each other */
         
@@ -93,7 +95,7 @@ export default function Cube() {
 
         /** zoom in/zoom out toggle for camera animation */
         let inc = true;
-        
+    
         /** function that renders / animates things inside scene */
         /** creates loop that renders every screen refresh (usually 60 times per second) */
         let animate = function () {
@@ -103,16 +105,18 @@ export default function Cube() {
                 inc = !inc;
             }
             
-            cube.rotation.x += 0.02;
-            cube.rotation.y += 0.02;
-            wire.rotation.x -= 0.01;
-            wire.rotation.y -= 0.01;
-            
-            if (inc) {
-                cubeGroup.position.z += 0.015;
-            } else {
-                cubeGroup.position.z -= 0.015;
+            if (!stop) {
+                cube.rotation.x += 0.02;
+                cube.rotation.y += 0.02;
+                wire.rotation.x -= 0.01;
+                wire.rotation.y -= 0.01;
+                if (inc) {
+                    cubeGroup.position.z += 0.015;
+                } else {
+                    cubeGroup.position.z -= 0.015;
+                }
             }
+            
 
             //flow.moveAlongCurve(0.0006);
             renderer.render( scene, camera );
@@ -127,8 +131,16 @@ export default function Cube() {
             camera.updateProjectionMatrix();
             renderer.setSize( mountRef.current.clientWidth, mountRef.current.clientHeight );
         }
-      
+
+        let cubeClick = function(event) {
+            stop = !stop;
+            console.log('clicked!');
+            console.log(event);
+            console.log('cubeX', cube.position.x);
+        }
+
         window.addEventListener("resize", onWindowResize, false);
+        window.addEventListener("click", cubeClick, false);
       
         
         animate();
@@ -146,9 +158,9 @@ export default function Cube() {
     return (
         <Container fluid className="Three">
             <div
-            ref={mountRef}
-            style={{ width: "90%", height: "600px", margin: "40px" }}
-          ></div>
+                ref={mountRef}
+                style={{ width: "90%", height:"800px", margin: "5px" }}
+            ></div>
         </Container>
     )
     
